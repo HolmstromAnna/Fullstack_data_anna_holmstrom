@@ -7,13 +7,13 @@ def ingest_csv_data_to_duckdb():
     for directory_path in CLEANED_DATA_PATH.glob("*"):
         schema_name = directory_path.name.lower().translate(translation_table)
         for csv_path in directory_path.glob("*"):
-            table_name = csv_path.name.lower().split("*")[0].translate(translation_table)
+            table_name = csv_path.name.lower().split(".")[0].translate(translation_table)
 
             with Database(DATABASE_PATH) as db:
-                db.query(f"CREATE SCHEMA IF NOT EXIST {schema_name};")
+                db.query(f"CREATE SCHEMA IF NOT EXISTS {schema_name};")
                 db.query(
                     f"""
-                        CREATE TABLE IF NOT EXIST {schema_name}.{table_name} AS
+                        CREATE TABLE IF NOT EXISTS {schema_name}.{table_name} AS
                         SELECT * FROM read_csv_auto('{csv_path}');
                         """
                 )
