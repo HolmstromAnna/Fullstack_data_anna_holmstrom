@@ -19,8 +19,9 @@ SELECT
 FROM
 	innehall.tabelldata
 ORDER BY
-	"Visningstid (timmar)" DESC OFFSET 1);
-)
+	"Visningstid (timmar)" DESC OFFSET 1
+);
+
 
 
 SELECT * FROM marts.content_view_time;
@@ -33,7 +34,8 @@ SELECT
 	Datum) AS Datum,
 	Visningar
 FROM
-	innehall.totalt);
+	innehall.totalt
+);
 
 	
 SELECT
@@ -44,3 +46,26 @@ WHERE
 	table_schema = 'marts';
 	
 SELECT * FROM marts.views_per_date;
+
+
+
+CREATE TABLE IF NOT EXISTS marts.viewers_gender AS
+(
+SELECT 
+	"Tittarnas kön", 
+	"Visningar (%)"
+FROM
+	tittare.tabelldata_alder
+);
+
+
+CREATE TABLE IF NOT EXISTS marts.viewers_age AS
+(
+SELECT
+	"Tittarnas ålder",
+	"Visningar (%)"
+FROM
+	tittare.tabelldata_kon
+);
+
+SELECT * FROM marts.viewers_age;
