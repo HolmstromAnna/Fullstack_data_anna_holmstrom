@@ -29,11 +29,10 @@ class TrafficSource:
         df_traffic_source = self._traffic_source.df
 
         fig = make_subplots(
-            rows=2, 
+            rows=1, 
             cols=2, 
             subplot_titles=("Visningar per Trafikkälla", 
-                            "Visningar (timmar) per Trafikkälla", 
-                            "Genomsnittlig visningslängd per Trafikkälla")
+                            "Visningar (timmar) per Trafikkälla")
         )
 
         fig.add_trace(
@@ -46,24 +45,14 @@ class TrafficSource:
             row=1, col=2
         )
 
-        fig.add_trace(
-            go.Bar(x=df_traffic_source["Trafikkälla"], y=df_traffic_source["Genomsnittlig visningslängd"], showlegend=False),
-            row=2, col=1
-        )
-
         fig.update_layout(
             title_text="", 
-            height=600, 
-            width=1500,
-            font=dict(size=12),  # Minskar textstorleken
-            margin=dict(t=20, b=50),
-            title_x=0.5,  # Centrerar huvudrubriken
+            height=400, 
+            width=1200,
+            margin=dict(t=30, b=50),
+            title_x=0.5
         )
 
-        # Justera titlarna för subplots
-        for annotation in fig['layout']['annotations']:
-            annotation['font'] = dict(size=10)  # Minska storleken på subplot-titlarna
-            annotation['yanchor'] = 'bottom'  # Flytta titlarna lite högre över subplots
-        st.subheader("Trafikkällor")
+        st.subheader("Trafikkälla")
         st.plotly_chart(fig)
 
