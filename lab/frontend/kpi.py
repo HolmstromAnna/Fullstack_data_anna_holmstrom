@@ -82,8 +82,8 @@ class ViewsPerVideo:
 
             with col2:
                 video_id = row["Video URL"].split("=")[-1]  # Hämta video-ID från URL:en
-                video_embed = f"<iframe width='250' height='150' src='https://www.youtube.com/embed/{video_id}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
+                video_embed = f"<iframe width='210' height='110' src='https://www.youtube.com/embed/{video_id}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
                 st.markdown(video_embed, unsafe_allow_html=True)  # Visa videon med HTML
                 
-                st.markdown("---")  
+            st.markdown("---")  
     
