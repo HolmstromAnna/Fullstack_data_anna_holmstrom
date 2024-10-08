@@ -19,8 +19,7 @@ SELECT
 FROM
 	innehall.tabelldata
 ORDER BY
-	"Visningstid (timmar)" DESC OFFSET 1
-);
+	"Visningstid (timmar)" DESC OFFSET 1);
 
 
 SELECT * FROM marts.content_view_time;
@@ -97,4 +96,20 @@ ALTER TABLE marts.traffic_source
 DROP COLUMN "Genomsnittlig visningslängd";
 
 
+
+-- skapa tabell visningar per video
+SELECT * FROM innehall.tabelldata;	
+
+CREATE TABLE IF NOT EXISTS marts.views_per_video AS
+(
+SELECT
+	Videotitel, Visningar
+FROM
+	innehall.tabelldata OFFSET 1
+LIMIT (SELECT COUNT(*) FROM innehall.tabelldata) - 7);
+
+SELECT * FROM marts.views_per_video;
+
+
+SELECT * FROM enhetstyp.tabelldata;
 
