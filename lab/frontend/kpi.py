@@ -7,20 +7,20 @@ class Content:
         
     def display_content(self):
         df_content = self._content.df
-        
-        st.subheader("KPIer för videor")
-        st.markdown("Nedan visas KPIer för totalt antal")
-        
+
+        st.subheader("Totalt antal:")
         kpis = {
             "videor": len(df_content),
+            "visningar": df_content["Visningar"].sum(),
             "visade timmar": df_content["Visningstid_timmar"].sum(),
             "prenumeranter": df_content["Prenumeranter"].sum(),
             "exponeringar": df_content["Exponeringar"].sum()
-        }  
+        } 
        
         for col, kpi in zip(st.columns(len(kpis)), kpis):
             with col:
                 st.metric(kpi, round(kpis[kpi]))
+        
               
 
 class Gender:
